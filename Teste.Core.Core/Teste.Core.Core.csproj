@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Teste.Data.IaC\Teste.Data.IaC.csproj" />
+  </ItemGroup>
+
 </Project>

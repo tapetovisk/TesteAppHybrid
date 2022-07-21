@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Teste.View.Page.Interface;
 using Teste.View.Page;
 using Teste.Client.WinForms.Classe;
+using Teste.Data.Domain.Interfaces.Controle;
+using Teste.Core.Core.Controllers;
+using Teste.Data.IaC;
 
 namespace Teste.Client.WinForms
 {
@@ -12,8 +15,10 @@ namespace Teste.Client.WinForms
             InitializeComponent();
 
             var services = new ServiceCollection();
+            services.RegisterServices();
             services.AddSingleton<IMessageB, MessageB>();
             services.AddScoped(sp => new HttpClient());
+            services.AddSingleton<IWeatherForecastControle, WeatherForecastControle>();
 
             services.AddWindowsFormsBlazorWebView();
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Teste.Data.Domain.Domain;
+using Teste.Data.Domain.Interfaces.Controle;
 
 namespace Teste.Api.Api.Controllers
 {
@@ -13,23 +14,27 @@ namespace Teste.Api.Api.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        public readonly IWeatherForecastControle _IWeatherForecastControle;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger) {
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecastControle weatherForecastControle) {
             _logger = logger;
+            _IWeatherForecastControle = weatherForecastControle;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get() {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            //return Enumerable.Range(1, 5).Select(index => new WeatherForecast {
+            //    Date = DateTime.Now.AddDays(index),
+            //    TemperatureC = Random.Shared.Next(-20, 55),
+            //    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            //})
+            //.ToArray();
+            return _IWeatherForecastControle.Get();
         }
 
         [HttpPost(Name = "PostWeatherForecast")]
         public IActionResult Post(WeatherForecast model) {
+            _IWeatherForecastControle.Add(model);
             return Ok();
         }
     }

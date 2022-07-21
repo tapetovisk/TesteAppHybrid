@@ -1,4 +1,7 @@
 ﻿using Teste.Client.Maui.Classe;
+using Teste.Core.Core.Controllers;
+using Teste.Data.Domain.Interfaces.Controle;
+using Teste.Data.IaC;
 using Teste.View.Page.Interface;
 
 namespace Teste.Client.Maui
@@ -14,6 +17,9 @@ namespace Teste.Client.Maui
                 });
 
             builder.Services.AddSingleton<IMessageB, MessageB>();
+            builder.Services.RegisterServices();
+            builder.Services.AddSingleton<IWeatherForecastControle, WeatherForecastControle>();
+
             builder.Services.AddScoped(sp => new HttpClient());
 
             builder.Services.AddMauiBlazorWebView();

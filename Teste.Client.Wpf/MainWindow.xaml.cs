@@ -2,6 +2,9 @@
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Teste.Client.Wpf.Classe;
+using Teste.Core.Core.Controllers;
+using Teste.Data.Domain.Interfaces.Controle;
+using Teste.Data.IaC;
 using Teste.View.Page.Interface;
 
 namespace Teste.Client.Wpf
@@ -15,8 +18,10 @@ namespace Teste.Client.Wpf
             InitializeComponent();
 
             var serviceCollection = new ServiceCollection();
+            serviceCollection.RegisterServices();
             serviceCollection.AddSingleton<IMessageB, MessageB>();
             serviceCollection.AddScoped(sp => new HttpClient());
+            serviceCollection.AddSingleton<IWeatherForecastControle, WeatherForecastControle>();
 
             serviceCollection.AddWpfBlazorWebView();
 

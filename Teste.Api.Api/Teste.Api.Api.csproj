@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Teste.Core.Core\Teste.Core.Core.csproj" />
     <ProjectReference Include="..\Teste.Data.Domain\Teste.Data.Domain.csproj" />
+    <ProjectReference Include="..\Teste.Data.IaC\Teste.Data.IaC.csproj" />
   </ItemGroup>
 
 </Project>
