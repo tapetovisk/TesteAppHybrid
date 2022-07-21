@@ -13,6 +13,7 @@ namespace Teste.Client.WinForms
 
             var services = new ServiceCollection();
             services.AddSingleton<IMessageB, MessageB>();
+            services.AddScoped(sp => new HttpClient());
 
             services.AddWindowsFormsBlazorWebView();
 

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Net.Http;
+using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Teste.Client.Wpf.Classe;
 using Teste.View.Page.Interface;
@@ -15,6 +16,8 @@ namespace Teste.Client.Wpf
 
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<IMessageB, MessageB>();
+            serviceCollection.AddScoped(sp => new HttpClient());
+
             serviceCollection.AddWpfBlazorWebView();
 
             serviceCollection.AddBlazorWebViewDeveloperTools();
